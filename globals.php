@@ -12,7 +12,7 @@ $debug = 0; // Set to 1 for verbose debugging output
 
 function logit($msg,$preamble=true)
 {
-    //  date_default_timezone_set('America/Los_Angeles');
+  //  date_default_timezone_set('America/Los_Angeles');
   $now = date(DateTime::ISO8601, time());
   error_log(($preamble ? "+++${now}:" : '') . $msg);
 }

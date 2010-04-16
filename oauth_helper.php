@@ -93,9 +93,9 @@ function oauth_parse_str($query_string)
  * @param array $params an array of query parameters
  * @return string encoded for insertion into HTTP header of API call
  */
-function build_oauth_header($params)
+function build_oauth_header($params, $realm='')
 {
-  $header = 'Authorization: OAuth realm="Twitter API"';
+  $header = 'Authorization: OAuth realm="' . $realm . '"';
   foreach ($params as $k => $v) {
     if (substr($k, 0, 5) == 'oauth') {
       $header .= ',' . rfc3986_encode($k) . '="' . rfc3986_encode($v) . '"';
