@@ -34,7 +34,7 @@ function get_request_token($consumer_key, $consumer_secret, $callback, $usePost=
   $retarr = array();  // return value
   $response = array();
 
-  $url = 'http://api.twitter.com/oauth/request_token';
+  $url = 'https://api.twitter.com/oauth/request_token';
   $params['oauth_version'] = '1.0';
   $params['oauth_nonce'] = mt_rand();
   $params['oauth_timestamp'] = time();
@@ -68,12 +68,12 @@ function get_request_token($consumer_key, $consumer_secret, $callback, $usePost=
     logit("getreqtok:INFO:request_url:$request_url");
     logit("getreqtok:INFO:post_body:$query_parameter_string");
     $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-    $response = do_post($request_url, $query_parameter_string, 80, $headers);
+    $response = do_post($request_url, $query_parameter_string, 443, $headers);
   } else {
     $request_url = $url . ($query_parameter_string ?
                            ('?' . $query_parameter_string) : '' );
     logit("getreqtok:INFO:request_url:$request_url");
-    $response = do_get($request_url, 80, $headers);
+    $response = do_get($request_url, 443, $headers);
   }
 
   // extract successful response

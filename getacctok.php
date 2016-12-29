@@ -3,9 +3,9 @@ require 'globals.php';
 require 'oauth_helper.php';
 
 // Fill in the next 3 variables.
-$request_token='AFFD3Sfd5l8sd3Ez1CAm2A2daFg1EafdeeCe245Q';
-$request_token_secret='kjreklwxkljwqerj23kljsASDFwerd8Adfxcfre19';
-$oauth_verifier= '1122333';
+$request_token='REPLACE_ME';
+$request_token_secret='REPLACE_ME';
+$oauth_verifier= 'REPLACE_ME';
 
 // Get the access token using HTTP GET and HMAC-SHA1 signature
 $retarr = get_access_token(OAUTH_CONSUMER_KEY, OAUTH_CONSUMER_SECRET,
@@ -37,7 +37,7 @@ function get_access_token($consumer_key, $consumer_secret, $request_token, $requ
   $retarr = array();  // return value
   $response = array();
 
-  $url = 'http://api.twitter.com/oauth/access_token';
+  $url = 'https://api.twitter.com/oauth/access_token';
   $params['oauth_version'] = '1.0';
   $params['oauth_nonce'] = mt_rand();
   $params['oauth_timestamp'] = time();
@@ -72,12 +72,12 @@ function get_access_token($consumer_key, $consumer_secret, $request_token, $requ
     logit("getacctok:INFO:request_url:$request_url");
     logit("getacctok:INFO:post_body:$query_parameter_string");
     $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-    $response = do_post($request_url, $query_parameter_string, 80, $headers);
+    $response = do_post($request_url, $query_parameter_string, 443, $headers);
   } else {
     $request_url = $url . ($query_parameter_string ?
                            ('?' . $query_parameter_string) : '' );
     logit("getacctok:INFO:request_url:$request_url");
-    $response = do_get($request_url, 80, $headers);
+    $response = do_get($request_url, 443, $headers);
   }
 
   // extract successful response

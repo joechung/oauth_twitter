@@ -4,15 +4,17 @@
  */
 
 // Fill in the next two constants
-define('OAUTH_CONSUMER_KEY', 'XaWgJdTYPatqCXfkeAvRT');
-define('OAUTH_CONSUMER_SECRET', 'sfkljwerWDFS2fxSFrqsadfdaf43EREx2SafFADddw');
+define('OAUTH_CONSUMER_KEY', 'REPLACE_ME');
+define('OAUTH_CONSUMER_SECRET', 'REPLACE_ME');
 
 $progname = $argv[0];
 $debug = 0; // Set to 1 for verbose debugging output
 
 function logit($msg,$preamble=true)
 {
-  //  date_default_timezone_set('America/Los_Angeles');
+  // If you get timezone warnings from PHP, then
+  // fill in the correct timezone, and uncomment the next line.
+  //date_default_timezone_set('America/Los_Angeles');
   $now = date(DateTime::ISO8601, time());
   error_log(($preamble ? "+++${now}:" : '') . $msg);
 }

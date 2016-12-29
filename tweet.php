@@ -3,8 +3,8 @@ require 'globals.php';
 require 'oauth_helper.php';
 
 // Fill in the next 2 variables.
-$access_token='12345678-xewriiooia23AEWfsSAD23AFret5645Ddaewrewsf';
-$access_token_secret='sdfasjkfKHKLkhdkfjwerFDSEWqfds243WFa24Fdfxf';
+$access_token='REPLACE_ME';
+$access_token_secret='REPLACE_ME';
 $tweet = 'Hello World!';
 
 // POST a tweet using OAuth authentication
@@ -29,7 +29,7 @@ function post_tweet($consumer_key, $consumer_secret, $status_message, $access_to
   $retarr = array();  // return value
   $response = array();
 
-  $url = 'http://api.twitter.com/1/statuses/update.json';
+  $url = 'https://api.twitter.com/1.1/statuses/update.json';
   $params['status'] = $status_message;
   $params['oauth_version'] = '1.0';
   $params['oauth_nonce'] = mt_rand();
@@ -58,12 +58,12 @@ function post_tweet($consumer_key, $consumer_secret, $status_message, $access_to
     logit("tweet:INFO:request_url:$request_url");
     logit("tweet:INFO:post_body:$query_parameter_string");
     $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-    $response = do_post($request_url, $query_parameter_string, 80, $headers);
+    $response = do_post($request_url, $query_parameter_string, 443, $headers);
   } else {
     $request_url = $url . ($query_parameter_string ?
                            ('?' . $query_parameter_string) : '' );
     logit("tweet:INFO:request_url:$request_url");
-    $response = do_get($request_url, 80, $headers);
+    $response = do_get($request_url, 443, $headers);
   }
 
   // extract successful response
